@@ -38,7 +38,12 @@ library(dplyr)
 library(ggplot2)
 library(timeDate)
 total_steps_per_day=activity%>%group_by(date)%>%summarise(total_steps=sum(steps))
-hist(total_steps_per_day$total_steps)
+gg=ggplot(total_steps_per_day,aes(x=total_steps))
+gg+geom_histogram(colour="black", fill="white")+labs(title="histogram of total steps per day",x="total stpes per day")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
@@ -97,7 +102,12 @@ print(sum(row_is_na))
 ```r
 activity_new<-activity_na %>% group_by(interval) %>% mutate(steps = ifelse(is.na(steps),mean(steps,na.rm=T), steps))
 total_steps_per_day=activity_new%>%group_by(date)%>%summarise(total_steps=sum(steps))
-hist(total_steps_per_day$total_steps)
+gg=ggplot(total_steps_per_day,aes(x=total_steps))
+gg+geom_histogram(colour="black", fill="white")+labs(title="histogram of total steps per day",x="total stpes per day")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
