@@ -3,9 +3,9 @@ title: 'Reproducible Research: Peer Assessment 1'
 author: "Jinsong Zhang"
 date: "9/11/2016"
 output:
+  pdf_document: default
   html_document:
     keep_md: yes
-  pdf_document: default
 ---
 
 ## Loading and preprocessing the data
@@ -51,7 +51,7 @@ g<-ggplot(mean_steps_per_interval,aes(x=interval,y=mean_steps_per_interval))+
   labs(title="average daily activity",y="average steps per 5-min interval")
 g+geom_line()
 
-# Sort activies in the descending order
+# Sort activities in the descending order
 ordered<-mean_steps_per_interval%>%arrange(desc(mean_steps_per_interval))
 
 # Which 5-minute interval, on average across all the days in the dataset,contains the maximum number of steps?
@@ -67,7 +67,7 @@ row_is_na<-apply(activity_na, 1, function(x) any(is.na(x)))
 # Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 print(sum(row_is_na))
 
-# replacing NA (missing values) with the mean of correspinding 5-min intervals
+# replacing NA (missing values) with the mean of corresponding 5-min intervals
 activity_new<-activity_na %>% group_by(interval) %>% mutate(steps = ifelse(is.na(steps),
                                                         mean(steps,na.rm=T), steps))
 
@@ -76,7 +76,7 @@ total_steps_per_day=activity_new%>%group_by(date)%>%summarise(total_steps=sum(st
 # Histogram of the total number of steps taken each day after missing values are imputed
 gg=ggplot(total_steps_per_day,aes(x=total_steps))
 gg+geom_histogram(colour="black", fill="white")+
-  labs(title="histogram of total steps per day (with missing data)",x="total stpes per day")
+  labs(title="histogram of total steps per day (with missing data)",x="total steps per day")
 
 
 mean_total_steps_per_day=mean(total_steps_per_day$total_steps)
@@ -90,7 +90,7 @@ print(median_total_steps_per_day)
 ```
 - Do these values differ from the estimates from the first part of the assignment? 
 
-     Mean was not affected. Median was slightly incrreased (from 10765 to 10766.19).
+     Mean was not affected. Median was slightly increased (from 10765 to 10766.19).
 
 - What is the impact of imputing missing data on the estimates of the total daily number of steps?
 

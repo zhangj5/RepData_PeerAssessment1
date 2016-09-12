@@ -89,7 +89,7 @@ g+geom_line()
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 ```r
-# Sort activies in the descending order
+# Sort activities in the descending order
 ordered<-mean_steps_per_interval%>%arrange(desc(mean_steps_per_interval))
 
 # Which 5-minute interval, on average across all the days in the dataset,contains the maximum number of steps?
@@ -116,7 +116,7 @@ print(sum(row_is_na))
 ```
 
 ```r
-# replacing NA (missing values) with the mean of correspinding 5-min intervals
+# replacing NA (missing values) with the mean of corresponding 5-min intervals
 activity_new<-activity_na %>% group_by(interval) %>% mutate(steps = ifelse(is.na(steps),
                                                         mean(steps,na.rm=T), steps))
 
@@ -125,7 +125,7 @@ total_steps_per_day=activity_new%>%group_by(date)%>%summarise(total_steps=sum(st
 # Histogram of the total number of steps taken each day after missing values are imputed
 gg=ggplot(total_steps_per_day,aes(x=total_steps))
 gg+geom_histogram(colour="black", fill="white")+
-  labs(title="histogram of total steps per day (with missing data)",x="total stpes per day")
+  labs(title="histogram of total steps per day (with missing data)",x="total steps per day")
 ```
 
 ```
@@ -155,7 +155,7 @@ print(median_total_steps_per_day)
 ```
 - Do these values differ from the estimates from the first part of the assignment? 
 
-     Mean was not affected. Median was slightly incrreased (from 10765 to 10766.19).
+     Mean was not affected. Median was slightly increased (from 10765 to 10766.19).
 
 - What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
