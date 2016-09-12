@@ -79,7 +79,7 @@ print(median_total_steps_per_day)
 ```r
 #Time series plot of the average number of steps taken
 mean_steps_per_interval=activity%>%group_by(interval)%>%summarise(mean_steps_per_interval=mean(steps))
-g<-ggplot(mean_steps_per_interval,aes(x=interval,y=mean_steps_per_interval))+labs(title="average daily activity",x="average steps per 5-min interval")
+g<-ggplot(mean_steps_per_interval,aes(x=interval,y=mean_steps_per_interval))+labs(title="average daily activity",y="average steps per 5-min interval")
 g+geom_line()
 ```
 
@@ -164,7 +164,7 @@ activity_new_wkd<-activity_new%>%mutate(wkd=ifelse(isWeekend(date),"weekend","we
 activity_new_wkd$wkd<-factor(activity_new_wkd$wkd)
 activity_wkd_weekday=activity_new_wkd%>%group_by(wkd,interval)%>%summarise(mean_steps_per_interval=mean(steps))
 # Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
-g<-ggplot(activity_wkd_weekday,aes(x=interval,y=mean_steps_per_interval))
+g<-ggplot(activity_wkd_weekday,aes(x=interval,y=mean_steps_per_interval))+labs(title="average daily activity",y="average steps per 5-min interval")
 g+geom_line(col="blue")+facet_wrap(~wkd,ncol=1)+theme_bw()
 ```
 
