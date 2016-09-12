@@ -47,7 +47,7 @@ total_steps_per_day=activity%>%group_by(date)%>%summarise(total_steps=sum(steps)
 gg=ggplot(total_steps_per_day,aes(x=total_steps))
 gg+geom_histogram(colour="black", fill="white")+
   labs(title="histogram of total steps per day (without missing data)",
-       x="total stpes per day")
+       x="total steps per day")
 ```
 
 ```
