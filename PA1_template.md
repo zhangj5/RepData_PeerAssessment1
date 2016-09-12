@@ -45,7 +45,7 @@ library(timeDate)
 total_steps_per_day=activity%>%group_by(date)%>%summarise(total_steps=sum(steps))
 #Histogram of the total number of steps taken each day
 gg=ggplot(total_steps_per_day,aes(x=total_steps))
-gg+geom_histogram(colour="black", fill="white")+labs(title="histogram of total steps per day",x="total stpes per day")
+gg+geom_histogram(colour="black", fill="white")+labs(title="histogram of total steps per day (no missing data)",x="total stpes per day")
 ```
 
 ```
@@ -120,7 +120,7 @@ activity_new<-activity_na %>% group_by(interval) %>% mutate(steps = ifelse(is.na
 total_steps_per_day=activity_new%>%group_by(date)%>%summarise(total_steps=sum(steps))
 # Histogram of the total number of steps taken each day after missing values are imputed
 gg=ggplot(total_steps_per_day,aes(x=total_steps))
-gg+geom_histogram(colour="black", fill="white")+labs(title="histogram of total steps per day",x="total stpes per day")
+gg+geom_histogram(colour="black", fill="white")+labs(title="histogram of total steps per day (with missing data)",x="total stpes per day")
 ```
 
 ```
